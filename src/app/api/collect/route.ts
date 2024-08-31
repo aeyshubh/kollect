@@ -17,11 +17,13 @@ import "dotenv/config";
 
 import { send } from "process";
 //const client = new BlinksightsClient(process.env.METKEY);
+const client = new BlinksightsClient(process.env.METKEY);
+const SEND_PUBKEY = 'SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa';
 
 export async function GET(request: Request) {
     const url = new URL(request.url);
     console.log("URL", url);
-    const payload: ActionGetResponse = {
+    const payload: ActionGetResponse = client.createActionGetResponseV1(request.url, {
         description: `Welcome to Kollect,a blink where you can collect your kamino rewards`,
         icon: "https://ucarecdn.com/1ec4c6f2-335d-4504-95d1-418cf983a216/kamino.png", // Local icon path
         label: `Select a pool to claim rewards from`,
@@ -54,8 +56,8 @@ export async function GET(request: Request) {
                 },
             ],
         }
-    }
-
+    });
+    client.trackRenderV1(request.url, payload);
     // client.trackRenderV1(request.url, payload);
     const res = Response.json(payload, {
         headers: ACTIONS_CORS_HEADERS,
@@ -72,6 +74,7 @@ export async function POST(request: Request) {
     const requestUrl = new URL(request.url);
     let pool = requestUrl.searchParams.get("pool")
     console.log("Pool", pool);
+  client.trackActionV1(request.headers, body.account, request.url);
     //  client.trackActionV1(request.hea    ders, body.account, request.url);
     console.log("RPC",process.env.RPC);
     const connection = new Connection(process.env.RPC || clusterApiUrl('mainnet-beta'));
