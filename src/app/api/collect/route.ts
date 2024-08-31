@@ -31,15 +31,15 @@ export async function GET(request: Request) {
         links: {
             actions: [
                 {
-                    label: `USDC-MSOL`, // button text
+                    label: `KMNO-PYUSD`, // button text
                     href: `/api/collect?pool=1`, // api endpoint
                 },
                 {
-                    label: `SOL-MSOL`, // button text
+                    label: `MSOL-SOL`, // button text
                     href: `/api/collect?pool=2`, // api endpoint
                 },
                 {
-                    label: `MSOL-ETH`, // button text
+                    label: `JITOSOL-SOL-ETH`, // button text
                     href: `/api/collect?pool=3`, // api endpoint
                 },
                 {
@@ -47,11 +47,11 @@ export async function GET(request: Request) {
                     href: `/api/collect?pool=4`, // api endpoint
                 },
                 {
-                    label: `USDT-PYUSDT`, // button text
+                    label: `PYUSDT-USDT`, // button text
                     href: `/api/collect?pool=5`, // api endpoint
                 },
                 {
-                    label: `USDC-SOL`, // button text
+                    label: `JUP-SOL`, // button text
                     href: `/api/collect?pool=6`, // api endpoint
                 },
             ],
@@ -82,25 +82,25 @@ export async function POST(request: Request) {
 
     let sender: PublicKey = new PublicKey(body.account);
 
-    let strategyPubkey= new PublicKey("9zBNQtnenpQY6mCoRqbPpeePeSy17h34DZP82oegt1fL");
+    let strategyPubkey= new PublicKey("BMXYupw7EzkR1S7hXwLnbx8TuetdaJjmqNBpGJ1Awgdw");
     switch (requestUrl.searchParams.get("pool")) {
         case "1":
-             strategyPubkey = new PublicKey('9zBNQtnenpQY6mCoRqbPpeePeSy17h34DZP82oegt1fL');
+             strategyPubkey = new PublicKey('BMXYupw7EzkR1S7hXwLnbx8TuetdaJjmqNBpGJ1Awgdw');
             break;
         case "2":
              strategyPubkey = new PublicKey('2dczcMRpxWHZTcsiEjPT4YBcSseTaUmWFzw24HxYMFod');
             break;
         case "3":
-             strategyPubkey = new PublicKey('F3v6sBb5gXL98kaMkaKm5GfEoBNUaSd3ZGErbjqgzTho');
+             strategyPubkey = new PublicKey('HCntzqDU5wXSWjwgLQP5hqh3kLHRYizKtPErvSCyggXd');
             break;
         case "4":
              strategyPubkey = new PublicKey('4mtuHtJ4kbtXECw2WMVsh7cYmryUCU6PR699aEzT7HCj');
             break;
         case "5":
-             strategyPubkey = new PublicKey('Hmj82e48X9LNW8LeMLk186iE4UKPoUwWuLwoiqMpUiGm');
+             strategyPubkey = new PublicKey('4jQtJnWSqPxnPxhD7xyPsvXwm3LKeC4wDgmZt1ks1pj3');
             break;
         case "6":
-             strategyPubkey = new PublicKey('ErBCeLmN2yQCA1HDUrRyenhu1fXUVMGyXDY4xSzxqiwC');
+             strategyPubkey = new PublicKey('CVCsJFoYjN4gxABhuw71buKhGALRbBm5KvVJQcaodVpt');
             break;
 
         // you may also fetch strategies from hubble config
