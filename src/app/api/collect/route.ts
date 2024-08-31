@@ -23,7 +23,7 @@ const SEND_PUBKEY = 'SENDdRQtYMWaQrBroBrJ2Q53fgVuq95CV9UPGEvpCxa';
 export async function GET(request: Request) {
     const url = new URL(request.url);
     console.log("URL", url);
-    const payload: ActionGetResponse = client.createActionGetResponseV1(request.url, {
+    const payload: ActionGetResponse = {
         description: `Welcome to Kollect,a blink where you can collect your kamino rewards`,
         icon: "https://ucarecdn.com/1ec4c6f2-335d-4504-95d1-418cf983a216/kamino.png", // Local icon path
         label: `Select a pool to claim rewards from`,
@@ -56,7 +56,7 @@ export async function GET(request: Request) {
                 },
             ],
         }
-    });
+    };
     client.trackRenderV1(request.url, payload);
     // client.trackRenderV1(request.url, payload);
     const res = Response.json(payload, {
